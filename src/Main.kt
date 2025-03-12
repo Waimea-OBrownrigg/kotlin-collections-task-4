@@ -284,15 +284,15 @@ fun placeMonkeyInCage(cageList: MutableList<String>, cageNum: Int, name: String)
  * +--------+--------+--------+--------+----
  */
 fun showMonkeyCages(cageList: List<String>) {
-    val divider = "+--------".repeat(cageList.size) + "+"
+    val divider = "+--------".grey().repeat(cageList.size) + "+".grey()
 
     println(divider)
-    for (i in 0..<cageList.size) print("| Cage ${i + 1} ")
-    println("|")
+    for (i in 0..<cageList.size) print("| Cage ${i + 1} ".grey())
+    println("|".grey())
 
     println(divider)
-    for ((i, name) in cageList.withIndex()) print("| ${name.padEnd(6)} ")
-    println("|")
+    for ((i, name) in cageList.withIndex()) print("| ${checkNames(name)} ".grey())
+    println("|".grey())
 
     println(divider)
 }
@@ -307,4 +307,10 @@ fun clearCage(cageList: MutableList<String>, cageNum: Int) {
     // Ok to clear the cage
     println("--- Clearing cage $cageNum")
     cageList[cageNum - 1] = EMPTY
+}
+
+fun checkNames(name: String): String {
+    if (name.contains("!")) return "${name.padEnd(6)}".red()
+    else if (name == EMPTY) return "${name.padEnd(6)}".blue()
+    else return "${name.padEnd(6)}".green()
 }
