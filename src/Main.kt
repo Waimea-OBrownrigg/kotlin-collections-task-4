@@ -181,10 +181,17 @@ fun main() {
  */
 fun placeMonkey(cageList: MutableList<String>, name: String): Int {
     println("+++ Putting $name into a cage")
-    for ((i, cage) in cageList.withIndex()) {
-        if (cage == EMPTY) {
-            cageList[i] = name
-            return (i + 1)
+    var weird_var = "!"
+    for (i in 0..< cageList.size) {
+        if (cageList[i] == EMPTY) {
+            if (cageList[i - 1].contains(weird_var)) {
+            }
+            else if (cageList[i + 1].contains(weird_var)) {
+            }
+            else {
+                cageList[i] = name
+                return (i + 1)
+            }
         }
     }
     println("ERROR PLACING MONKEY: All cages occupied.")
